@@ -1,0 +1,42 @@
+.top-grad {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(255, 0, 0, 0.1), white);
+    background-size: 100% 150px;
+    background-position: top;
+    background-repeat: no-repeat;
+    z-index: 0;
+    position: relative;
+    padding-top: 60px;
+    margin: 0 auto;
+}
+
+
+.herosec-header {
+    margin: 0px 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.herosec-img {
+    width: auto;
+    height: 400px;
+
+}
+
+.herosec-left {
+    font-size: 15px;
+    width: 50%;
+    margin-top: -20px;
+    text-align: justify;
+    flex: 1;
+
+}
+
+.herosec-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+}

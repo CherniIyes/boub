@@ -1,0 +1,40 @@
+.layout {
+      display: flex;
+      height: 100vh;
+      /* Make the layout take the full height of the viewport */
+}
+
+.sidebar {
+      width: 250px;
+      /* Fixed width for the sidebar */
+      background-color: #f4f4f4;
+      padding: 20px;
+      box-sizing: border-box;
+      /* Include padding in the element's total width and height */
+}
+
+.content {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      /* Allow content to scroll if it overflows */
+}
+
+.sidebar .logo {
+      margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+      list-style: none;
+      padding: 0;
+}
+
+.sidebar nav ul li {
+      margin-bottom: 10px;
+}
+
+.sidebar nav ul li a {
+      text-decoration: none;
+      color: #333;
+}

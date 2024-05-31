@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Events.css";
 import EventForm from "../components/EventForm.jsx";
 
@@ -21,7 +21,7 @@ import g1img1 from "../assets/g1img1.png";
 import g2mimg2 from "../assets/g1mimg1.png";
 import g2img2 from "../assets/g2img2.png";
 import g1mimg1 from "../assets/g2mimg2.png";
-
+import axios from 'axios'
 export default function Events() {
   const [showText, setShowText] = useState({
     whereAndWhen: false,
@@ -30,7 +30,7 @@ export default function Events() {
   });
 
   const [activeSection, setActiveSection] = useState("");
-
+  const [data, setData] = useState([]);
   const handleToggleText = (section) => {
     setShowText((prevShowText) => ({
       ...prevShowText,
@@ -76,94 +76,103 @@ export default function Events() {
     }));
     setActiveSection((prevSection) => (prevSection === section ? "" : section)); */
   }
-  return (
-    <>
-      <header className="header">
-        <img src={headerbg} alt="headerbg" />
-        <div className="header-content">
-          <div className="header-left">
-            <img src={nahjlboustaevent} alt="" />
-            <h1> 01/02/2001</h1>
+
+
+  useEffect(()=>{
+    axios.get('http://localhost:8081/events/get')
+    .then(res=>setData(res.data))
+    .catch(err=>console.log(err))
+    
+    
+    },[])
+
+
+
+
+    return (
+      <>
+        <header className="header">
+          <div className="header-content">
+            {data.map((event, index) => (
+              <div className="header-left" key={index}>
+                <img className='' src={event.image} alt="" />
+                <div className="titles-with-borders">
+                  <h1>{event.event_title}</h1>
+                  <p>{event.description}</p>
+                  <h1>{event.created_at}</h1> 
+                  <h1>{event.date}</h1>           
+                </div>
+              </div>
+            ))}
+            <div className="form-container">
+              <EventForm />
+            </div>
+          </div>
+        </header>
+  
+        <div className="content-wrapper">
+          <div className="page-content">
+            <h1> Mahrajane nahj bousta </h1>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
+              {" "}
+              Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentia.
+              ever since the 1500s, when an unknown printer took a galley of type
+              and scrambled it to make a type specimen book. It has survived not
+              only five centuries, but also the leap into electronic typesetting,
+              remaining essentially unchanged. It was popularised.
             </p>
-          </div>
-          <div className="form-container">
-            <EventForm />
-          </div>
-        </div>
-      </header>
-
-      <div className="content-wrapper">
-        <div className="page-content">
-          <h1> Mahrajane nahj bousta </h1>
-          <p>
-            {" "}
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised.
-          </p>
-          <p style={{ fontWeight: 700 }}>See more</p>
-
-          <div className="titles-with-borders">
-            <h3
-              onClick={() => handleToggleText("whereAndWhen")}
-              className={activeSection === "whereAndWhen" ? "active" : ""}
-            >
-              Where & When
-            </h3>
-            {
-              <p
-                className={`whereAndWhen ${
-                  showText.whereAndWhen ? "show" : ""
-                }`}
+            <p style={{ fontWeight: 700 }}>See more</p>
+  
+            <div className="titles-with-borders">
+              <h3
+                onClick={() => handleToggleText("whereAndWhen")}
+                className={activeSection === "whereAndWhen" ? "active" : ""}
               >
-                Details about Where & When...
-              </p>
-            }
-            <h3
-              onClick={() => handleToggleText("planning")}
-              className={activeSection === "planning" ? "active" : ""}
-            >
-              Planning
-            </h3>
-            {
+                Where & When
+              </h3>
+              {showText.whereAndWhen && (
+                <div>
+                  {data.map((event, index) => (
+                    <div key={index}>
+                      <img className='' src={event.image} alt="" />
+                    
+                    </div>
+                  ))}
+                </div>
+              )}
+              <h3
+                onClick={() => handleToggleText("planning")}
+                className={activeSection === "planning" ? "active" : ""}
+              >
+                Planning
+              </h3>
               <p className={`planning ${showText.planning ? "show" : ""}`}>
                 Details about Planning...
               </p>
-            }
-            <h3
-              onClick={() => handleToggleText("timeline")}
-              className={activeSection === "timeline" ? "active" : ""}
-            >
-              Timeline
-            </h3>
-            {
+              <h3
+                onClick={() => handleToggleText("timeline")}
+                className={activeSection === "timeline" ? "active" : ""}
+              >
+                Timeline
+              </h3>
               <p className={`timeline ${showText.timeline ? "show" : ""}`}>
                 Details about Timeline...
               </p>
-            }
-          </div>
-          <div className="other-events">
-            <h1> Other Events</h1>
-            <FilterButton
-              onSelect={handleButtonClick}
-              options={[
-                { label: "Option1", value: "option1" },
-                { label: "Option2", value: "option2" },
-                { label: "Option3", value: "option3" },
-              ]}
-            >
-              Filter
-            </FilterButton>
+            </div>
+            <div className="other-events">
+              <h1> Other Events</h1>
+              <FilterButton
+                onSelect={() => console.log("Filter button clicked")}
+                options={[
+                  { label: "Option1", value: "option1" },
+                  { label: "Option2", value: "option2" },
+                  { label: "Option3", value: "option3" },
+                ]}
+              >
+                Filter
+              </FilterButton>
+  
           </div>
         </div>
       </div>

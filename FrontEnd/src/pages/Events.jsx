@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Events.css";
 import EventForm from "../components/EventForm.jsx";
-
 import FilterButton from "../components/FilterButton.jsx";
-
 import headerbg from "../assets/headerbg.png";
 import nahjlboustaevent from "../assets/nahjlboustaevent.png";
 import { useActionData } from "react-router-dom";
-
 import event1 from "../assets/event1.png";
 import event2 from "../assets/event2.png";
 import event3 from "../assets/event3.png";
@@ -16,11 +13,11 @@ import event5 from "../assets/event5.png";
 import event6 from "../assets/event6.png";
 import event7 from "../assets/event7.png";
 import joinusbg from "../assets/joinusbg.png";
-
 import g1img1 from "../assets/g1img1.png";
 import g2mimg2 from "../assets/g1mimg1.png";
 import g2img2 from "../assets/g2img2.png";
 import g1mimg1 from "../assets/g2mimg2.png";
+import axios from 'axios';
 
 export default function Events() {
   const [showText, setShowText] = useState({
@@ -30,7 +27,8 @@ export default function Events() {
   });
 
   const [activeSection, setActiveSection] = useState("");
-
+  const [data, setData] = useState([]);
+  
   const handleToggleText = (section) => {
     setShowText((prevShowText) => ({
       ...prevShowText,
@@ -46,6 +44,7 @@ export default function Events() {
         return section;
       }
     });
+
     if (activeSection && activeSection !== section) {
       setShowText((prevShowText) => ({
         ...prevShowText,
@@ -59,9 +58,7 @@ export default function Events() {
   };
 
   const images = [event1, event2, event3, event4, event5, event6, event7];
-
   const [dotPosition, setDotPosition] = useState(0);
-  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateClick = (position) => {
     setDotPosition(position);
@@ -69,30 +66,24 @@ export default function Events() {
 
   const dates = ["2022", "2023", "2024"];
 
-  {
-    /* (prevState) => ({
-      ...prevState,
-      [section]: !prevState[section],
-    }));
-    setActiveSection((prevSection) => (prevSection === section ? "" : section)); */
-  }
+  useEffect(() => {
+    axios.get('http://localhost:8081/events/get')
+      .then(res => setData(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <>
       <header className="header">
-        <img src={headerbg} alt="headerbg" />
         <div className="header-content">
-          <div className="header-left">
-            <img src={nahjlboustaevent} alt="" />
-            <h1> 01/02/2001</h1>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentia.
-            </p>
-          </div>
+          {data.map((event, index) => (
+            <div className="header-left" key={index}>
+              <img className='img' src={event.image1} alt="" />
+              <h1 className="date">{event.date}</h1>
+              <p className="des">{event.description}</p>
+        
+            </div>
+          ))}
           <div className="form-container">
             <EventForm />
           </div>
@@ -101,16 +92,12 @@ export default function Events() {
 
       <div className="content-wrapper">
         <div className="page-content">
-          <h1> Mahrajane nahj bousta </h1>
-          <p>
-            {" "}
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised.
-          </p>
+          {data.map((event, index) => (
+            <div key={index}>
+               <h1>{event.event_title}</h1>
+               <p>{event.description}</p>
+            </div>
+          ))}
           <p style={{ fontWeight: 700 }}>See more</p>
 
           <div className="titles-with-borders">
@@ -120,42 +107,56 @@ export default function Events() {
             >
               Where & When
             </h3>
-            {
-              <p
-                className={`whereAndWhen ${
-                  showText.whereAndWhen ? "show" : ""
-                }`}
-              >
-                Details about Where & When...
-              </p>
-            }
+            {showText.whereAndWhen && (
+              <div>
+                {data.map((event, index) => (
+                  <div key={index}>
+                    <img className='' src={event.imge2} alt="" />
+                  </div>
+                ))}
+              </div>
+            )}
             <h3
               onClick={() => handleToggleText("planning")}
               className={activeSection === "planning" ? "active" : ""}
             >
               Planning
             </h3>
-            {
-              <p className={`planning ${showText.planning ? "show" : ""}`}>
-                Details about Planning...
-              </p>
-            }
+            <p className={`planning ${showText.planning ? "show" : ""}`}>
+              Details about Planning...
+            </p>
+            {showText.planning && (
+              <div>
+                {data.map((event, index) => (
+                  <div key={index}>
+                    <img className='' src={event.imge3} alt="" />
+                  </div>
+                ))}
+              </div>
+            )}
             <h3
               onClick={() => handleToggleText("timeline")}
               className={activeSection === "timeline" ? "active" : ""}
             >
               Timeline
             </h3>
-            {
-              <p className={`timeline ${showText.timeline ? "show" : ""}`}>
-                Details about Timeline...
-              </p>
-            }
+            <p className={`timeline ${showText.timeline ? "show" : ""}`}>
+              Details about Timeline...
+            </p>
+            {showText.timeline && (
+              <div>
+                {data.map((event, index) => (
+                  <div key={index}>
+                    <img className='' src={event.imge3} alt="" />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="other-events">
             <h1> Other Events</h1>
             <FilterButton
-              onSelect={handleButtonClick}
+              onSelect={() => console.log("Filter button clicked")}
               options={[
                 { label: "Option1", value: "option1" },
                 { label: "Option2", value: "option2" },
@@ -173,6 +174,7 @@ export default function Events() {
           <img key={index} src={imageUrl} alt={`image ${index + 1}`} />
         ))}
       </div>
+
       <div className="page-content2">
         <div className="date-filter-container">
           <div className="line">
@@ -194,6 +196,7 @@ export default function Events() {
           </div>
         </div>
       </div>
+
       <div className="join-us-banner">
         <img src={joinusbg} alt="join-us" />
         <h1>
@@ -202,6 +205,7 @@ export default function Events() {
           <span style={{ fontWeight: 600, fontSize: "28px" }}>A Volunteer</span>
         </h1>
       </div>
+
       <div className="btm-form">
         <div className="img-group1">
           <img src={g1img1} alt="img" />
@@ -218,7 +222,6 @@ export default function Events() {
             Join Us Today
           </h3>
           <h4 style={{ fontWeight: "500", marginTop: "0px" }}>
-            {" "}
             Claim Your Spot!
           </h4>
           <EventForm />
@@ -228,8 +231,9 @@ export default function Events() {
           <img src={g2mimg2} alt="img" />
         </div>
       </div>
+
       <div className="page-content3">
-        <hr></hr>
+        <hr />
         <div className="page-btm">
           <div className="socials">
             <p style={{ margin: "0px", fontWeight: 600, fontSize: "12px" }}>
@@ -238,7 +242,6 @@ export default function Events() {
           </div>
           <div className="btp">
             <p style={{ margin: "0px", fontWeight: 600, fontSize: "12px" }}>
-              {" "}
               Back to Top
             </p>
           </div>

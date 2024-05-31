@@ -20,11 +20,10 @@ import pr2 from "../assets/pr2.png";
 import pr3 from "../assets/pr3.png";
 
 import pwu from "../assets/pwu.png";
-import axios from 'axios';
+
 const images = [pr1, pr2, pr3];
 
 export default function PartnerFunds() {
-  const [data, setData] = useState([]);
   const HeroSecData = {
     title: "Partner With Us",
     subtitle: "Let's Make Wonders Together!",
@@ -34,11 +33,6 @@ export default function PartnerFunds() {
       "Join us in amplifying marginalized voices and fostering positive digital transformation. Together, let's shape an inclusive digital community through our diverse projects.",
     Img: [bebbhar],
   };
-  useEffect(() => {
-    axios.get('http://localhost:8081/partners/')
-      .then(res => setData(res.data))
-      .catch(err => console.log(err));
-  }, []);
 
   return (
     <div className="">

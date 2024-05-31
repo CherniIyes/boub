@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Funds.css";
 import HeroSec from "../components/HeroSec.jsx";
 
@@ -8,8 +8,11 @@ import f2 from "../assets/f2.png";
 import f3 from "../assets/f3.png";
 import f4 from "../assets/f4.png";
 import partnershiprec1 from "../assets/partnershiprec1.png";
+import pdf from "../assets/iyed_amris_resume.pdf";
+import axios from 'axios';
 
 export default function Funds() {
+  const [data, setData] = useState([]);
   const HeroSecData = {
     title: "Funds",
     subtitle: "Funds and Aids",
@@ -17,30 +20,31 @@ export default function Funds() {
       "As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our comm",
     Img: [tones],
   };
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/funds/')
+      .then(res => setData(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <div>
       <HeroSec {...HeroSecData} />
       <div className="c-content-1">
         <h3>the list of funds acquired by ATDCE </h3>
         <h3> Reports</h3>
+        
         <div className="f-set">
-          <div className="f-set-1">
-            <img src={f4} alt="" className="f-set-i" />
-            <h5>2024 : Jan - March</h5>
-          </div>
-          <div className="f-set-1">
-            <img src={f3} alt="" className="f-set-i" />
-            <h5>2024 : Jan - august</h5>
-          </div>
-          <div className="f-set-1">
-            <img src={f2} alt="" className="f-set-i" />
-            <h5>2024 : July - september</h5>
-          </div>
-          <div className="f-set-1">
-            <img src={f1} alt="" className="f-set-i" />
-            <h5>2024 : October - December</h5>
-          </div>
+          {data.map((event, index) => (
+            <div className="f-set-1" key={index}>
+              <a href={pdf} target="_blank" rel="noopener noreferrer">
+                <img className="f-set-i" src={event.image} alt="" />
+              </a>
+              <h5>{event.date}</h5>
+            </div>
+          ))}
         </div>
+
         <h3>Tunisian NGO’s</h3>
         <p>
           NGOs in Tunisia play a crucial role in addressing various social,

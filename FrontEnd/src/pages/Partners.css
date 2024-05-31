@@ -44,3 +44,15 @@
 .p-partner-w-us p {
     width: 90%;
 }
+.partner-images-container {
+    display: flex;
+    justify-content: space-between; /* This will evenly distribute the images horizontally */
+  }
+.partner-img-item{
+    width: 140px;
+    justify-content: space-around;
+    margin-right: 120px
+}
+
+  
+ 

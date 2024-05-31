@@ -105,6 +105,22 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `atdce`.`collaborators`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `atdce`.`collaborators` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image5` VARCHAR(10000) NOT NULL,
+  `image6` TEXT NOT NULL,
+  `image7` TEXT NOT NULL,
+  `image8` TEXT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `atdce`.`event`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `atdce`.`event` (
@@ -170,54 +186,15 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `atdce`.`project`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `atdce`.`project` (
-  `project_id` INT NOT NULL AUTO_INCREMENT,
-  `project_name` VARCHAR(255) NOT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  `project_url` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`project_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `atdce`.`partner`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `atdce`.`partner` (
-  `part_id` INT NOT NULL AUTO_INCREMENT,
-  `part_name` VARCHAR(100) NULL DEFAULT NULL,
-  `part_email` VARCHAR(100) NULL DEFAULT NULL,
-  `part_phone` VARCHAR(20) NULL DEFAULT NULL,
-  `part_address` VARCHAR(255) NULL DEFAULT NULL,
-  `part_website` VARCHAR(100) NULL DEFAULT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`part_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `atdce`.`fund`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `atdce`.`fund` (
-  `description` TEXT NULL DEFAULT NULL,
-  `amount` DECIMAL(10,2) NOT NULL,
-  `date_created` DATE NOT NULL,
-  `project_id` INT NOT NULL,
-  `part_id` INT NOT NULL,
-  PRIMARY KEY (`project_id`, `part_id`),
-  INDEX `part_id` (`part_id` ASC) VISIBLE,
-  CONSTRAINT `fund_ibfk_1`
-    FOREIGN KEY (`project_id`)
-    REFERENCES `atdce`.`project` (`project_id`),
-  CONSTRAINT `fund_ibfk_2`
-    FOREIGN KEY (`part_id`)
-    REFERENCES `atdce`.`partner` (`part_id`))
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image` VARCHAR(10000) NOT NULL,
+  `date` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -234,6 +211,36 @@ CREATE TABLE IF NOT EXISTS `atdce`.`news` (
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`news_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `atdce`.`partner`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `atdce`.`partner` (
+  `part_id` INT NOT NULL AUTO_INCREMENT,
+  `image1` VARCHAR(10000) NOT NULL,
+  `image2` TEXT NOT NULL,
+  `image3` TEXT NOT NULL,
+  `image4` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`part_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `atdce`.`project`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `atdce`.`project` (
+  `project_id` INT NOT NULL AUTO_INCREMENT,
+  `project_name` VARCHAR(255) NOT NULL,
+  `description` TEXT NULL DEFAULT NULL,
+  `project_url` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`project_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

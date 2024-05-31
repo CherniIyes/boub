@@ -19,14 +19,3 @@ pool.getConnection((err, connection) => {
 });
 
 module.exports = pool;
-  
-
-
-  /* connection.connect((error) => {
-    if (error) {
-      console.error(error);
-    } else {
-      console.log('Connected to the database');
-    }
-  });
-*/

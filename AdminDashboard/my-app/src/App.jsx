@@ -8,6 +8,7 @@ import Funds from './pages/Funds';
 import Careers from './pages/Careers';
 import Partners from './pages/Partners';
 import Login from './pages/Login';
+import Events from './pages/Event';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,6 +20,7 @@ function App() {
         <Route path="/*" element={isAuthenticated ? <Layout /> : <Navigate to="/login" />}>
           <Route index element={<Home />} />
           <Route path="blog" element={<Blog />} />
+          <Route path="events" element={<Events />} />
           <Route path="funds" element={<Funds />} />
           <Route path="careers" element={<Careers />} />
           <Route path="partners" element={<Partners />} />

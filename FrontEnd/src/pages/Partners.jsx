@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Partners.css";
 import HeroSec from "../components/HeroSec.jsx";
 
@@ -20,10 +20,13 @@ import pr2 from "../assets/pr2.png";
 import pr3 from "../assets/pr3.png";
 
 import pwu from "../assets/pwu.png";
-
+import axios from 'axios';
 const images = [pr1, pr2, pr3];
 
 export default function Partners() {
+  const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
+
   const HeroSecData = {
     title: "Partner With Us",
     subtitle: "Let's Make Wonders Together!",
@@ -34,23 +37,47 @@ export default function Partners() {
     Img: [bebbhar],
   };
 
+  useEffect(() => {
+    axios.get('http://localhost:8081/partners/')
+      .then(res => setData(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/collaborators/')
+      .then(res => setData1(res.data))
+      .catch(err => console.log(err));
+  }, []);
+  
   return (
     <div className="">
       <HeroSec {...HeroSecData} />
       <div className="partner-content">
         <h3>Who are our current partners?</h3>
         <carousel className="partner-carousel">
-          <img src={p1} alt="" className="partner-img-item" />
-          <img src={p2} alt="" className="partner-img-item" />
-          <img src={p3} alt="" className="partner-img-item" />
-          <img src={p4} alt="" className="partner-img-item" />
+        {data.map((event, index) => (
+            <div className="partner-images-container" key={index}>
+              <img className='partner-img-item' src={event.image1} alt="" />
+              <img className='partner-img-item' src={event.image2} alt="" />
+              <img className='partner-img-item' src={event.image3} alt="" />
+              <img className='partner-img-item' src={event.image4} alt="" />
+            </div>
+            ))}
+         
+         
         </carousel>
         <h3>Our Previous Collaborators</h3>
         <carousel className="partner-carousel">
-          <img src={c1} alt="" className="partner-img-item" />
-          <img src={c2} alt="" className="partner-img-item" />
-          <img src={c3} alt="" className="partner-img-item" />
-          <img src={c4} alt="" className="partner-img-item" />
+        {data1.map((event, index) => (
+            <div className="partner-images-container" key={index}>
+              <img className='partner-img-item' src={event.image5} alt="" />
+              <img className='partner-img-item' src={event.image6} alt="" />
+              <img className='partner-img-item' src={event.image7} alt="" />
+              <img className='partner-img-item' src={event.image8} alt="" />
+            </div>
+            ))}
+         
+         
         </carousel>
       </div>
       <img src={banner} alt="" className="partner-img-banner" />

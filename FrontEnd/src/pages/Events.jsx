@@ -111,7 +111,7 @@ export default function Events() {
               <div>
                 {data.map((event, index) => (
                   <div key={index}>
-                    <img className='' src={event.imge2} alt="" />
+                    <img className='' src={event.image2} alt="" />
                   </div>
                 ))}
               </div>
@@ -129,7 +129,7 @@ export default function Events() {
               <div>
                 {data.map((event, index) => (
                   <div key={index}>
-                    <img className='' src={event.imge3} alt="" />
+                    <img className='' src={event.image3} alt="" />
                   </div>
                 ))}
               </div>
@@ -147,7 +147,7 @@ export default function Events() {
               <div>
                 {data.map((event, index) => (
                   <div key={index}>
-                    <img className='' src={event.imge3} alt="" />
+                    <img className='' src={event.image4} alt="" />
                   </div>
                 ))}
               </div>

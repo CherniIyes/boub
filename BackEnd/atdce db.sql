@@ -35,6 +35,22 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `atdce`.`adminuser`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `atdce`.`adminuser` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(1000) NOT NULL,
+  `isverified` INT NULL DEFAULT '0',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `atdce`.`job_offer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `atdce`.`job_offer` (
@@ -127,10 +143,10 @@ CREATE TABLE IF NOT EXISTS `atdce`.`event` (
   `event_id` INT NOT NULL AUTO_INCREMENT,
   `event_title` VARCHAR(255) NOT NULL,
   `description` VARCHAR(1000) NOT NULL,
-  `imge2` TEXT NOT NULL,
-  `imge3` TEXT NOT NULL,
-  `image1` VARCHAR(10000) NOT NULL,
-  `date` VARCHAR(45) NOT NULL,
+  `image1` TEXT NOT NULL,
+  `image2` TEXT NOT NULL,
+  `image3` TEXT NOT NULL,
+  `image4` TEXT NOT NULL,
   PRIMARY KEY (`event_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 2

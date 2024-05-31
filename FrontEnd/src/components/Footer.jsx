@@ -94,10 +94,11 @@ export default function () {
             action! Sign up now to stay in the loop.
           </p>
           <div className="socials-icons">
-            <img src={fb} alt="fb" />
-            <img src={ig} alt="ig" />
-            <img src={linkedin} alt="linkedin" />
-            <img src={yt} alt="yt" />
+          <img src={fb} alt="Facebook" onClick={() => window.open("https://www.facebook.com/Boublinet", "_blank")} />
+
+            <img src={ig} alt="ig" onClick={() => window.open("https://www.instagram.com/boublinet/", "_blank")} />
+            <img src={linkedin} alt="linkedin"onClick={() => window.open("https://www.linkedin.com/company/boubli/", "_blank")} />
+            <img src={yt} alt="yt" onClick={() => window.open("https://www.youtube.com/@BOUBLI", "_blank")}/>
           </div>
         </section>
       </footer>

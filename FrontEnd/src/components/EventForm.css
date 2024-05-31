@@ -2,3 +2,16 @@ form {
 display: flex;
 flex-direction: column;
 }
+
+
+
+
+.thank-you {
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .b{
+    background-color: #fff;
+    border-radius: 10px;
+  }

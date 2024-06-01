@@ -45,9 +45,10 @@ CREATE TABLE IF NOT EXISTS `atdce`.`adminuser` (
   `isverified` INT NULL DEFAULT '0',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
 
 -- -----------------------------------------------------
 -- Table `atdce`.`job_offer`
@@ -136,15 +137,30 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `atdce`.`currentjob`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `atdce`.`currentjob` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image` VARCHAR(10000) NOT NULL,
+  `pdfl` TEXT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `atdce`.`event`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `atdce`.`event` (
   `event_id` INT NOT NULL AUTO_INCREMENT,
   `event_title` VARCHAR(255) NOT NULL,
   `description` VARCHAR(1000) NOT NULL,
-  `imge2` TEXT NOT NULL,
-  `imge3` TEXT NOT NULL,
-  `image1` VARCHAR(10000) NOT NULL,
+  `image1` TEXT NOT NULL,
+  `image2` TEXT NOT NULL,
+  `image3` TEXT NOT NULL,
+  `image4` TEXT NOT NULL,
   `date` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`event_id`))
 ENGINE = InnoDB
@@ -207,9 +223,23 @@ CREATE TABLE IF NOT EXISTS `atdce`.`fund` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image` VARCHAR(10000) NOT NULL,
   `date` VARCHAR(45) NOT NULL,
+  `pdf` TEXT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `atdce`.`internship`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `atdce`.`internship` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image` VARCHAR(10000) NOT NULL,
+  `pdf` TEXT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

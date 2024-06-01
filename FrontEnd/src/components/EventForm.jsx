@@ -68,7 +68,10 @@ export default function EventForm() {
           </label>
           <button className="button-89" type="submit">Submit</button>
         </form>
+        
       )}
+     
     </div>
+    
   );
 }

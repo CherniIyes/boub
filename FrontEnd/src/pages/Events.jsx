@@ -75,17 +75,20 @@ export default function Events() {
   return (
     <>
       <header className="header">
-        <div className="header-content">
+      <div className="header-content">
           {data.map((event, index) => (
             <div className="header-left" key={index}>
               <img className='img' src={event.image1} alt="" />
+              <div className="hh">
+                <h1 className="title">{event.event_title}</h1>
+                </div>
               <h1 className="date">{event.date}</h1>
               <p className="des">{event.description}</p>
-        
             </div>
           ))}
           <div className="form-container">
             <EventForm />
+
           </div>
         </div>
       </header>
@@ -111,7 +114,7 @@ export default function Events() {
               <div>
                 {data.map((event, index) => (
                   <div key={index}>
-                    <img className='' src={event.imge2} alt="" />
+                    <img className='' src={event.image2} alt="" />
                   </div>
                 ))}
               </div>
@@ -129,7 +132,7 @@ export default function Events() {
               <div>
                 {data.map((event, index) => (
                   <div key={index}>
-                    <img className='' src={event.imge3} alt="" />
+                    <img className='' src={event.image3} alt="" />
                   </div>
                 ))}
               </div>
@@ -147,7 +150,7 @@ export default function Events() {
               <div>
                 {data.map((event, index) => (
                   <div key={index}>
-                    <img className='' src={event.imge3} alt="" />
+                    <img className='' src={event.image4} alt="" />
                   </div>
                 ))}
               </div>

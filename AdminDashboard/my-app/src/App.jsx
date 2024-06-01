@@ -9,7 +9,7 @@ import Careers from './pages/Careers';
 import Partners from './pages/Partners';
 import Login from './pages/Login';
 import Events from './pages/Event';
-
+import NewEvent from './pages/NewEvent';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -24,6 +24,7 @@ function App() {
           <Route path="funds" element={<Funds />} />
           <Route path="careers" element={<Careers />} />
           <Route path="partners" element={<Partners />} />
+          <Route path="create-article" element={<NewEvent />} />  // Add the route for the new form
         </Route>
       </Routes>
     </Router>

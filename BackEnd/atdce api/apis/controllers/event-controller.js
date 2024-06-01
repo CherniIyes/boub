@@ -31,8 +31,8 @@ const getEvent = (req, res) => {
 
 const createEvent = (req, res) => {
 
-    const { event_id, event_title, description, image1, imge2, imge3, date } = req.body
-    const newEvent = { event_id, event_title, description, image1, imge2, imge3, date };
+    const { event_title, description, image1, image2, image3, image4, date } = req.body
+    const newEvent = { event_title, description, image1, image2, image3, image4, date };
 
     const sql = 'INSERT INTO event SET ?';
     pool.query(sql, newEvent, (error) => {

@@ -75,17 +75,20 @@ export default function Events() {
   return (
     <>
       <header className="header">
-        <div className="header-content">
+      <div className="header-content">
           {data.map((event, index) => (
             <div className="header-left" key={index}>
               <img className='img' src={event.image1} alt="" />
+              <div className="hh">
+                <h1 className="title">{event.event_title}</h1>
+                </div>
               <h1 className="date">{event.date}</h1>
               <p className="des">{event.description}</p>
-        
             </div>
           ))}
           <div className="form-container">
             <EventForm />
+
           </div>
         </div>
       </header>

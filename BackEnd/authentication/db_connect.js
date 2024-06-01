@@ -1,46 +1,21 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const mysql = require('mysql2');
+const config = {
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'atdce'
+};
 
-// sequelize instance
-const sequelize = new Sequelize("atdce", "root", "root", {
-  host: "localhost",
-  dialect: "mysql",
-});
+const connection = mysql.createConnection(config)
+connection.connect((err) => {
+  if (err) {
+    console.log(err)
+  }
+  else {
+    console.log("db is connected ")
+  }
+})
 
-// defining models
-const user = sequelize.define("user", {
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  isVerified: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  emailToken: {
-    type: DataTypes.STRING,
-  },
-  refreshToken: {
-    type: DataTypes.STRING,
-  },
-});
 
-sequelize
-  .sync({})
-  .then(() => {
-    console.log("Database synced successfully!");
-  })
-  .catch((error) => {
-    console.error("Error syncing database:", error);
-  });
 
-module.exports = { sequelize, user };
+module.exports = connection;

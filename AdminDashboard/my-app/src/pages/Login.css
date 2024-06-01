@@ -1,0 +1,128 @@
+body {
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+}
+
+.logo-login{
+      width: 120px;
+      margin-left: 110px;
+      margin-bottom: 15px;
+}
+
+.login-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+}
+
+.tayf {
+      margin-top: 300px;
+      background-color: #f4f4f4;
+      padding: 40px;
+      border-radius: 37px;
+      height: 760px;
+      width: 900px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+}
+
+.login-container {
+      margin-bottom: 100px;
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+}
+
+.login-form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+}
+
+.login-button {
+      padding: 13px;
+      font-size: 14px;
+
+}
+
+.form-group {
+      display: flex;
+      align-items: center;
+      border: 1px solid #000;
+      margin-bottom: 20px;
+      padding: 7px;
+      border-radius: 5px;
+      background: white;
+}
+
+.form-group label {
+      display: flex;
+      align-items: center;
+      width: 100%;
+}
+
+.icon {
+      margin-right: 10px;
+}
+
+.form-group input {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 10px;
+}
+
+button {
+      width: 100%;
+      padding: 15px;
+      background: #000;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+}
+
+button:hover {
+      background: #333;
+}
+
+.forgot-password {
+      margin-top: 10px;
+      margin-left: 220px;
+      font-weight: bold;
+      font-size: 15px;
+
+}
+
+
+.forgot-password a {
+      color: #000;
+      text-decoration: none;
+}
+
+.forgot-password a:hover {
+      text-decoration: underline;
+}
+
+.notice {
+      margin-top: 50px;
+
+}
+
+.notice span {
+      color: red;
+      font-size: 14px;
+
+}
+
+.notice-text {
+      font-size: larger;
+      color: #000;
+}

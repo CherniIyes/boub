@@ -64,7 +64,7 @@ export default function AboutUs() {
         <h3> History</h3>
       </div>
       <div className="a-content5-wrap">
-        <Splide options={{ type: 'loop', perPage: 3, autoplay: true, gap: '1rem' }} className="a-content5">
+        <Splide options={{ type: 'loop', perPage: 3, autoplay: true, gap: '1rem',arrows: false }} className="a-content5">
           {[hist1, hist2, hist3].map((histImage, index) => (
             <SplideSlide key={index}>
               <div className="a-imgset">

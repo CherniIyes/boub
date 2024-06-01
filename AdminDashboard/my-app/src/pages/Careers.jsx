@@ -1,23 +1,60 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import './Carrers.css';
+import { AiFillPlusCircle } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom';
+const Carrers = () => {
+      const [carrers, setCarrers] = useState([]);
+      const navigate = useNavigate(); 
+      useEffect(() => {
+            axios.get('http://localhost:8081/events/get')
+                  .then(response => {
+                        setCarrers(response.data);
+                  })
+                  .catch(error => {
+                        console.error('There was an error fetching the events!', error);
+                  });
+      }, []);
 
-const Careers = () => {
-  const carrers = [
-    { id: 1, title: 'First Post', content: 'This is the content of the first post.' },
-    { id: 2, title: 'Second Post', content: 'This is the content of the second post.' },
-    // Add more posts here
-];
+      const handleCreateArticle = () => {
+            navigate('/create-article');  // Navigate to the new form page
+      };
 
-return (
-    <div>
-          <h1>Careers Page</h1>
-          {carrers.map(post => (
-                <div key={post.id}>
-                      <h2>{post.title}</h2>
-                      <p className='content'>{post.content}</p>
-                </div>
-          ))}
-    </div>
-);
+      return (
+            <div>
+                  <button className="create-article-button" onClick={handleCreateArticle}><AiFillPlusCircle size={22} />Create Article</button>
+
+                  <div className="event-page">
+                        <h1>Event Page</h1>
+                        <table>
+                              <thead>
+                                    <tr>
+                                          <th>ID</th>
+                                          <th>Title</th>
+                                          <th>Description</th>
+                                          <th>Image1</th>
+                                          <th>Image2</th>
+                                          <th>Image3</th>
+                                          <th>Date</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    {carrers.map(event => (
+                                          <tr key={event.event_id}>
+                                                <td className='ktiba'>{event.event_id}</td>
+                                                <td className='ktiba'>{event.event_title}</td>
+                                                <td className='ktiba'>{event.description}</td>
+                                                <td><img src={event.image1} alt="Event Image 1" /></td>
+                                                <td><img src={event.image2} alt="Event Image 2" /></td>
+                                                <td><img src={event.image3} alt="Event Image 3" /></td>
+                                                <td className='ktiba'>{event.date}</td>
+                                          </tr>
+                                    ))}
+                              </tbody>
+                        </table>
+                  </div>
+            </div>
+      );
 };
 
-export default Careers
+export default Carrers;

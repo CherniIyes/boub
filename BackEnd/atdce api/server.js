@@ -22,8 +22,12 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/blogs', blogRouter );
+
+app.use('/blogs', blogRouter);
+
+
 app.use('/events', eventRouter);
+
 app.use('/partners', partnerRouter);
 app.use('/projects', projectRouter);
 app.use('/news', newsRouter);

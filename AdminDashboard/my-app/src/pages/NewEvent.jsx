@@ -114,7 +114,7 @@ const NewEvent = () => {
                         <div className="popup">
                               <div className="popup-inner">
                                     <h2>Event created successfully!</h2>
-                                    <button onClick={closePopup}>Close</button>
+                                    <button className='filsa' onClick={closePopup}>Close</button>
                               </div>
                         </div>
                   )}

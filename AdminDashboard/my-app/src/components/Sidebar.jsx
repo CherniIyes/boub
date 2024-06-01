@@ -11,7 +11,7 @@ const Sidebar = () => {
                 <ul>
                     <li className='link'><NavLink to="/" exact activeClassName="active">Home</NavLink></li>
                     <li className='link'><NavLink to="/blog" activeClassName="active">Blog</NavLink></li>
-                    <li className='link'><NavLink to="/eventsDashboard" activeClassName="active">Events</NavLink></li>
+                    <li className='link'><NavLink to="/events" activeClassName="active">Events</NavLink></li>
                     <li className='link'><NavLink to="/funds" activeClassName="active">Funds</NavLink></li>
                     <li className='link'><NavLink to="/careers" activeClassName="active">Careers</NavLink></li>
                     <li className='link'><NavLink to="/partners" activeClassName="active">Partners</NavLink></li>

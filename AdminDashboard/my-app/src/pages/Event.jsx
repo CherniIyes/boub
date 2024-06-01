@@ -17,7 +17,7 @@ const Event = () => {
       }, []);
 
       const handleCreateArticle = () => {
-            navigate('/create-article');  // Navigate to the new form page
+            navigate('/create-article');  
       };
 
       return (

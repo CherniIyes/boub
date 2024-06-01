@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Careers.css";
 
 import banner from "../assets/careers-banner.png";
@@ -12,16 +12,32 @@ import co3 from "../assets/c-o-3.png";
 import co4 from "../assets/c-o-4.png";
 
 import partnershiprec from "../assets/partnership-rec.png";
+import axios from 'axios';
 
 export default function Careers() {
+  const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8081/currentjob/get')
+      .then(res => setData(res.data))
+      .catch(err => console.log(err));
+  }, []);
+  
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/internship/get')
+      .then(res => setData1(res.data))
+      .catch(err => console.log(err));
+  }, []);
+  
   return (
     <div>
-      <img src={banner} alt="" />
+      <img src={banner} alt="Careers Banner" />
       <div className="c-content-1">
         <div className="c-content-1-row">
           <div className="c-content-1-row-1">
-            <h3> Join Our Team </h3>
-            <h5> A career Full of Opportunities </h5>
+            <h3>Join Our Team</h3>
+            <h5>A Career Full of Opportunities</h5>
             <p>
               We aim to uplift marginalized voices and drive positive change in
               the digital sphere. Join us on this journey towards a more
@@ -30,16 +46,17 @@ export default function Careers() {
             </p>
           </div>
           <div className="c-content-1-row-2">
-            <img src={cg1} alt="" className="c-content-1-row-2-img" />
-            <img src={cg2} alt="" className="c-content-1-row-2-img" />
+            <img src={cg1} alt="Career Graphic 1" className="c-content-1-row-2-img" />
+            <img src={cg2} alt="Career Graphic 2" className="c-content-1-row-2-img" />
           </div>
         </div>
-        <h3> Current Job Openings</h3>
+        <h3>Current Job Openings</h3>
         <div className="c-img-set">
-          <img src={co1} alt="" />
-          <img src={co2} alt="" />
-          <img src={co3} alt="" />
-          <img src={co4} alt="" />
+          {data.map((job, index) => (
+            <a key={index} href={job.pdfl} target="_blank" rel="noopener noreferrer" download>
+              <img src={job.image} alt={`Job Opening ${index + 1}`} />
+            </a>
+          ))}
         </div>
         <h3>The Importance of Creativity</h3>
         <p>
@@ -61,25 +78,26 @@ export default function Careers() {
           Join us to shape a vibrant world through creativity's power.
         </p>
 
-        <h3>Are you searching for an internship ?</h3>
+        <h3>Are you searching for an internship?</h3>
         <div className="c-img-set">
-          <img src={co1} alt="" />
-          <img src={co2} alt="" />
-          <img src={co3} alt="" />
-          <img src={co4} alt="" />
+          {data1.map((inetrn, index) => (
+            <a key={index} href={inetrn.pdf} target="_blank" rel="noopener noreferrer" download>
+              <img src={inetrn.image} alt={`Job Opening ${index + 1}`} />
+            </a>
+          ))}
         </div>
       </div>
       <div className="part-content-5">
         <div className="part-content-5-in">
-          <h3> Job Inquiries</h3>
-          <h5> Zemni Norchene</h5>
-          <h6> Vice President Of Vice President</h6>
-          <p> Zemninorchene01@Gmail.com</p>
+          <h3>Job Inquiries</h3>
+          <h5>Zemni Norchene</h5>
+          <h6>Vice President Of Vice President</h6>
+          <p>Zemninorchene01@Gmail.com</p>
         </div>
-        <img src={partnershiprec} alt="" />
+        <img src={partnershiprec} alt="Partnership Rec" />
       </div>
       <div className="page-content3">
-        <hr></hr>
+        <hr />
         <div className="page-btm">
           <div className="socials">
             <p style={{ margin: "0px", fontWeight: 600, fontSize: "12px" }}>
@@ -88,7 +106,6 @@ export default function Careers() {
           </div>
           <div className="btp">
             <p style={{ margin: "0px", fontWeight: 600, fontSize: "12px" }}>
-              {" "}
               Back to Top
             </p>
           </div>

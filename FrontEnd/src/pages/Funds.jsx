@@ -3,12 +3,7 @@ import "./Funds.css";
 import HeroSec from "../components/HeroSec.jsx";
 
 import tones from "../assets/MAP 1.png";
-import f1 from "../assets/f1.png";
-import f2 from "../assets/f2.png";
-import f3 from "../assets/f3.png";
-import f4 from "../assets/f4.png";
 import partnershiprec1 from "../assets/partnershiprec1.png";
-import pdf from "../assets/iyed_amris_resume.pdf";
 import axios from 'axios';
 
 export default function Funds() {
@@ -17,7 +12,7 @@ export default function Funds() {
     title: "Funds",
     subtitle: "Funds and Aids",
     description1:
-      "As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our comm",
+      "As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our communities.As an NGO, we need funds to effectively support our mission, sustain our programs, and create a lasting impact in our comm",
     Img: [tones],
   };
 
@@ -31,13 +26,13 @@ export default function Funds() {
     <div>
       <HeroSec {...HeroSecData} />
       <div className="c-content-1">
-        <h3>the list of funds acquired by ATDCE </h3>
-        <h3> Reports</h3>
+        <h3>The list of funds acquired by ATDCE</h3>
+        <h3>Reports</h3>
         
         <div className="f-set">
           {data.map((event, index) => (
             <div className="f-set-1" key={index}>
-              <a href={pdf} target="_blank" rel="noopener noreferrer">
+              <a href={event.pdf} target="_blank" rel="noopener noreferrer" download>
                 <img className="f-set-i" src={event.image} alt="" />
               </a>
               <h5>{event.date}</h5>
@@ -85,7 +80,6 @@ export default function Funds() {
           </div>
           <div className="btp">
             <p style={{ margin: "0px", fontWeight: 600, fontSize: "12px" }}>
-              {" "}
               Back to Top
             </p>
           </div>

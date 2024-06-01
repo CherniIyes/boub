@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './EventsDashboard.css';
 import { AiFillPlusCircle } from "react-icons/ai";
+import "./Event.css"
 const Event = () => {
       const [events, setEvents] = useState([]);
       const navigate = useNavigate();

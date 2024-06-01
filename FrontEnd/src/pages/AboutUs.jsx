@@ -1,4 +1,6 @@
 import React from "react";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import "./AboutUs.css";
 
 import banner from "../assets/aboutus-banner.png";
@@ -62,29 +64,18 @@ export default function AboutUs() {
         <h3> History</h3>
       </div>
       <div className="a-content5-wrap">
-        <div className="a-content5">
-          <div className="a-imgset">
-            <img src={hist1} alt="" className="a-imgset-item" />
-            <p> 2022</p>
-            <h3>Ramadhan Activities</h3>
-            <p>A series of Ramadan activities, including iftar gatherings.</p>
-          </div>
-          <div className="a-imgset">
-            <img src={hist2} alt="" className="a-imgset-item" />
-            <p> 2023</p>
-            <h3>Gang’lab</h3>
-            <p>A training series to educate content creators.</p>
-          </div>
-          <div className="a-imgset">
-            <img src={hist3} alt="" className="a-imgset-item" />
-            <p> 2024</p>
-            <h3>Transportation talk</h3>
-            <p>
-              Raising awareness about transportation in Tunisia and its
-              associated challenges.
-            </p>
-          </div>
-        </div>
+        <Splide options={{ type: 'loop', perPage: 3, autoplay: true, gap: '1rem',arrows: false }} className="a-content5">
+          {[hist1, hist2, hist3].map((histImage, index) => (
+            <SplideSlide key={index}>
+              <div className="a-imgset">
+                <img src={histImage} alt={`History ${index + 1}`} className="a-imgset-item" />
+                <p> {2022 + index}</p>
+                <h3>{index === 0 ? "Ramadhan Activities" : index === 1 ? "Gang’lab" : "Transportation talk"}</h3>
+                <p>{index === 0 ? "A series of Ramadan activities, including iftar gatherings." : index === 1 ? "A training series to educate content creators." : "Raising awareness about transportation in Tunisia and its associated challenges."}</p>
+              </div>
+            </SplideSlide>
+          ))}
+        </Splide>
         <hr className="au-hr"></hr>
       </div>
       <div className="a-setifvids">

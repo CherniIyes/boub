@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import "./Partners.css";
 import HeroSec from "../components/HeroSec.jsx";
 
@@ -21,6 +23,7 @@ import pr3 from "../assets/pr3.png";
 
 import pwu from "../assets/pwu.png";
 import axios from 'axios';
+
 const images = [pr1, pr2, pr3];
 
 export default function Partners() {
@@ -54,38 +57,38 @@ export default function Partners() {
       <HeroSec {...HeroSecData} />
       <div className="partner-content">
         <h3>Who are our current partners?</h3>
-        <carousel className="partner-carousel">
-        {data.map((event, index) => (
-            <div className="partner-images-container" key={index}>
-              <img className='partner-img-item' src={event.image1} alt="" />
-              <img className='partner-img-item' src={event.image2} alt="" />
-              <img className='partner-img-item' src={event.image3} alt="" />
-              <img className='partner-img-item' src={event.image4} alt="" />
-            </div>
-            ))}
-         
-         
-        </carousel>
+        <Splide options={{ type: 'loop', perPage: 1, autoplay: true, gap: '1rem',arrows: false}} className="partner-carousel">
+          {data.map((event, index) => (
+            <SplideSlide key={index}>
+              <div className="partner-images-container">
+                <img className='partner-img-item' src={event.image1} alt="" />
+                <img className='partner-img-item' src={event.image2} alt="" />
+                <img className='partner-img-item' src={event.image3} alt="" />
+                <img className='partner-img-item' src={event.image4} alt="" />
+              </div>
+            </SplideSlide>
+          ))}
+        </Splide>
         <h3>Our Previous Collaborators</h3>
-        <carousel className="partner-carousel">
-        {data1.map((event, index) => (
-            <div className="partner-images-container" key={index}>
-              <img className='partner-img-item' src={event.image5} alt="" />
-              <img className='partner-img-item' src={event.image6} alt="" />
-              <img className='partner-img-item' src={event.image7} alt="" />
-              <img className='partner-img-item' src={event.image8} alt="" />
-            </div>
-            ))}
-         
-         
-        </carousel>
+        <Splide options={{ type: 'loop', perPage: 1, autoplay: true, gap: '1rem',arrows: false}} className="partner-carousel">
+          {data1.map((event, index) => (
+            <SplideSlide key={index}>
+              <div className="partner-images-container">
+                <img className='partner-img-item' src={event.image5} alt="" />
+                <img className='partner-img-item' src={event.image6} alt="" />
+                <img className='partner-img-item' src={event.image7} alt="" />
+                <img className='partner-img-item' src={event.image8} alt="" />
+              </div>
+            </SplideSlide>
+          ))}
+        </Splide>
       </div>
       <img src={banner} alt="" className="partner-img-banner" />
       <div className="partner-content">
         <h3>Discover partnerships Projects</h3>
         <div className="p-image-container">
           {images.map((imageUrl, index) => (
-            <img key={index} src={imageUrl} alt={`image ${index + 1}`} />
+            <img key={index} src={imageUrl} alt="" />
           ))}
         </div>
         <div className="p-partner-w-us">

@@ -26,7 +26,7 @@ const Event = () => {
                         <AiFillPlusCircle size={22} />Create Article
                   </button>
                   <div className="event-page">
-                        <h1>Event Page</h1>
+                        <h1>Events Page</h1>
                         <table>
                               <thead>
                                     <tr>

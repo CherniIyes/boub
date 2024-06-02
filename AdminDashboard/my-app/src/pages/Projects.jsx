@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './Blog.css';
+import './Projects.css';
 import { AiFillPlusCircle } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-const Blogs = () => {
+const Projects = () => {
       const [blogs, setBlogs] = useState([]);
       const navigate = useNavigate(); 
       useEffect(() => {
@@ -58,4 +58,4 @@ const Blogs = () => {
       );
 };
 
-export default Blogs;
+export default Projects;

@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Funds.css';
 import { AiFillPlusCircle } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+
 const Funds = () => {
   const [funds, setFunds] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
-    axios.get('http://localhost:8081/events/get')
+    axios.get('http://localhost:8081/funds')
       .then(response => {
         setFunds(response.data);
       })
@@ -16,42 +19,35 @@ const Funds = () => {
       });
   }, []);
 
-  const handleCreateArticle = () => {
-    navigate('/create-article');  // Navigate to the new form page
+  const handleCreateFund = () => {
+    navigate('/create-funds');  
+  };
+
+  const handleDeleteFund = (id) => {
+    axios.delete(`http://localhost:8081/funds/${id}`)
+      .then(() => {
+        setFunds(funds.filter(fund => fund.id !== id));
+      })
+      .catch(error => {
+        console.error('There was an error deleting the fund!', error);
+      });
   };
 
   return (
-    <div>
-      <button className="create-article-button" onClick={handleCreateArticle}><AiFillPlusCircle size={22} />Create Article</button>
-
-      <div className="event-page">
-        <h1>Event Page</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Image1</th>
-              <th>Image2</th>
-              <th>Image3</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {funds.map(event => (
-              <tr key={event.event_id}>
-                <td className='ktiba'>{event.event_id}</td>
-                <td className='ktiba'>{event.event_title}</td>
-                <td className='ktiba'>{event.description}</td>
-                <td><img src={event.image1} alt="Event Image 1" /></td>
-                <td><img src={event.image2} alt="Event Image 2" /></td>
-                <td><img src={event.image3} alt="Event Image 3" /></td>
-                <td className='ktiba'>{event.date}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="funds-container">
+            <h1>Funds Page</h1>
+      <div className="funds-list">
+        {funds.map((fund, index) => (
+          <div key={index} className="fund-item">
+            <img src={fund.image} alt={`Fund ${index}`} />
+            <div className="delete-icon" onClick={() => handleDeleteFund(fund.id)}>
+              <AiOutlineClose size={20} />
+            </div>
+          </div>
+        ))}
+        <div className="fund-item plus-item" onClick={handleCreateFund}>
+          <AiFillPlusCircle size={50} />
+        </div>
       </div>
     </div>
   );

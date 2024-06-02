@@ -27,6 +27,7 @@ app.use('/blogs', blogRouter);
 
 
 app.use('/events', eventRouter);
+app.use('/funds', fundRouter);
 
 app.use('/partners', partnerRouter);
 app.use('/projects', projectRouter);
@@ -35,7 +36,6 @@ app.use('/joboffer', jobofferRouter);
 app.use('/cands', candidatesRouter);
 app.use('/volunteer', volunteersRouter);
 app.use('/locations', locationRouter);
-app.use('/funds', fundRouter);
 app.use('/jobApplication', jobApplicationRouter);
 app.use('/volParticipation', volParticipationRouter);
 app.use('/collaborators',collaboratorsRouter)

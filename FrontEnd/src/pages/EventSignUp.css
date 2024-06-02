@@ -1,0 +1,136 @@
+.event-sign-up {
+      width: 80%;
+      margin: 0 auto;
+      font-family: Arial, sans-serif;
+      padding-top: 20px;
+}
+
+.event-header {
+      position: relative;
+      text-align: center;
+
+}
+
+.event-header img {
+      width: 100%;
+
+}
+
+.image-containerss {
+      width: 100%;
+      height: auto;
+      position: relative;
+      right: 200px;
+}
+
+.image-containerss img {
+      width: 150%;
+      height: 250px;
+}
+
+.event-header-overlay {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      color: white;
+      font-size: 20px;
+}
+
+.form-container {
+      background: white;
+      padding: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      margin-top: -760px;
+      width: 50%;
+
+}
+
+.form-container h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+}
+
+.form-container p {
+      font-size: 18px;
+      margin-bottom: 20px;
+}
+
+.form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+}
+
+.form-group.birthday {
+      display: flex;
+      gap: 10px;
+}
+
+.form-group.gender {
+      display: flex;
+      gap: 10px;
+}
+
+.form-group.gender label {
+      display: flex;
+      align-items: center;
+}
+
+.form-group.gender input {
+      margin-right: 5px;
+}
+
+.form-group.terms label {
+      display: flex;
+      align-items: center;
+}
+
+.form-group.terms input {
+      margin-right: 5px;
+}
+
+button {
+      padding: 10px 20px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+}
+
+button:hover {
+      background-color: #333;
+}
+
+.page-content3 {
+      margin-top: 40px;
+}
+
+.page-btm {
+      display: flex;
+      justify-content: space-between;
+}
+
+.page-btm .socials p,
+.page-btm .btp p {
+      font-size: 12px;
+      font-weight: 600;
+}
+
+h2 {
+      font-family: "Poppins";
+      font-size: 20px;
+      color: #22211F;
+      text-align: center;
+      position: relative;
+      top: 235px;
+}

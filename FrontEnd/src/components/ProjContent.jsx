@@ -19,7 +19,7 @@ export default function ProjContent({
   socialImages,
   socialNumbers,
   Img,
-  recImg,
+  recVideo,
   latestProjectsDescription,
   latestProjectsImg,
   imgg,
@@ -52,7 +52,7 @@ export default function ProjContent({
           <p>{description}</p>
         </div>
         <div className="projheader-right">
-          <h1>{title} Imapct</h1>
+          <h1>{title} Impact</h1>
           <h4>Impact Explored </h4>
           <p>{description2}</p>
         </div>
@@ -69,7 +69,17 @@ export default function ProjContent({
           ))}
         </div>
         <img src={Img} alt="sa7 sattar" className="sa7sattarimg" />
-        <img src={recImg} alt="rec3" />
+        {recVideo ? (
+          <video
+            width="100%"
+            height="auto"
+            src={recVideo}
+            autoPlay
+            loop
+            muted
+            className="video-banner"
+          />
+        ) : null}
       </div>
       <div className="projheader-content3">
         <h1> {title} Projects</h1>

@@ -20,7 +20,7 @@ const Funds = () => {
   }, []);
 
   const handleCreateFund = () => {
-    navigate('/create-funds');  
+    navigate('/createFunds');  
   };
 
   const handleDeleteFund = (id) => {

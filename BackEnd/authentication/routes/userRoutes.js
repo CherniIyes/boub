@@ -7,6 +7,6 @@ router.get('/get', userController.getUsers);
 router.post('/login', userController.login);
 router.post('/register', userController.register);
 router.put('/update/:id', userController.update);
-
+router.get('/count', userController.getUserCount);
 
 module.exports = router;

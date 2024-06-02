@@ -286,6 +286,28 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
+
+-- -----------------------------------------------------
+-- Table `atdce`.`blogs`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `atdce`.`blogs` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `content` TEXT NULL DEFAULT NULL,
+  `author` VARCHAR(100) NULL DEFAULT NULL,
+  created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `imageurl` VARCHAR(255) NULL DEFAULT NULL,
+  `imageurl1` VARCHAR(255) NULL DEFAULT NULL,
+  `imageurl2` VARCHAR(255) NULL DEFAULT NULL,
+  `imageurl3` VARCHAR(255) NULL DEFAULT NULL,
+  `imageurl4` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
 -- -----------------------------------------------------
 -- Table `atdce`.`users`
 -- -----------------------------------------------------

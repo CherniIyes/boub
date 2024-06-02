@@ -1,91 +1,84 @@
 const pool = require('../db_connect.js');
 
-//lkol
-const getBlogs = ( req, res ) => {
-    const sql = 'SELECT * from blog';
+// Get all blogs
+const getBlogs = (req, res) => {
+    const sql = 'SELECT * FROM blogs';
     pool.query(sql, (error, result) => {
         if (error) {
             console.error(error);
-            res.status(500).send('Error getting blogs from the database')
+            res.status(500).send('Error getting blogs from the database');
         } else {
-            res.json(result)
+            res.json(result);
         }
     });
 };
 
-//bl wahda
-const getBlog = ( req, res ) => {
-    const blogId = req.params.id;
-    const sql = 'SELECT * FROM blog where blog_id = ?';
-    pool.query(sql, [blogId], (error, result) => {
+// Get the latest blog
+const getLatestBlog = (req, res) => {
+    const sql = 'SELECT * FROM blogs ORDER BY created_at DESC LIMIT 1';
+    pool.query(sql, (error, result) => {
         if (error) {
             console.error(error);
-            res.status(500).send('Error getting the blog from the database');
-        } else if ( result.length === 0 ) { //result.length nestaamloha ken maa query SELECT. fl update nestaamlou result.affectedrows
-            res.status(404).json({ message: 'Blog with this id was not found' });
+            res.status(500).send('Error getting blogs from the database');
         } else {
-            res.json(result[0]);
+            res.json(result);
         }
     });
 };
 
+// Create a new blog
+const createBlog = (req, res) => {
+    const { title, content, author, imageurl, imageurl1, imageurl2, imageurl3, imageurl4 } = req.body;
+    const newBlog = { title, content, author, imageurl, imageurl1, imageurl2, imageurl3, imageurl4 };
 
-const createBlog = ( req, res ) => {
-
-    const {blog_id, blog_title, blog_description, blog_author, blog_url} = req.body;
-    const newBlog = {blog_id, blog_title, blog_description, blog_author, blog_url};
-
-    const sql = 'INSERT INTO blog SET ?';
-    pool.query(sql, newBlog, (error) => {
+    const sql = 'INSERT INTO blogs SET ?';
+    pool.query(sql, newBlog, (error, results) => {
         if (error) {
-            console.error(error);
-            res.status(500).send('Error creating Blog');
+            console.error('Error creating blog:', error);
+            res.status(500).send('Error creating blog');
         } else {
-            res.status(200).json( { status: 'success', message: 'Blog created successfully!'});
+            getLatestBlog(req, res); // Fetch and return the latest blog after creating a new one
         }
     });
 };
 
-const updateBlog = ( req, res ) => {
-
+const updateBlog = (req, res) => {
     const blogId = req.params.id;
-    const {blog_id, blog_title, blog_description, blog_author, blog_url} = req.body;
-    const updatedBlog = {blog_id, blog_title, blog_description, blog_author, blog_url};
+    const { title, content, author, imageurl, imageurl1, imageurl2, imageurl3, imageurl4 } = req.body;
+    const updatedBlog = { title, content, author, imageurl, imageurl1, imageurl2, imageurl3, imageurl4 };
 
-    const sql = 'UPDATE blog SET ? WHERE blog_id = ?';
-    pool.query(sql , [updatedBlog, blogId], (error, result) => {
+    const sql = 'UPDATE blogs SET ? WHERE id = ?';
+    pool.query(sql, [updatedBlog, blogId], (error, result) => {
         if (error) {
             console.error(error);
             res.status(500).send('Error updating blog');
-        } 
-        if (result.affectedRows === 0) {
-            res.status(404).json({ message: 'Blog not found'})
-        }
-        {
-            res.status(200).json({ status: 'success', message: 'Blog updated successfully!'});
+        } else if (result.affectedRows === 0) {
+            res.status(404).json({ message: 'Blog not found' });
+        } else {
+            res.status(200).json({ status: 'success', message: 'Blog updated successfully!' });
         }
     });
 };
 
-const deleteBlog = ( req, res ) => {
-        const blogId = req.params.id;
-    
-        const sql = 'DELETE FROM blog WHERE blog_id= ?';
-        pool.query(sql, blogId, (error, result) => {
-            if (error) {
-                console.error(error);
-                res.status(500).send('Error deleting blog');
-            }
-            if (result.affectedRows === 0) {
-                res.status(404).json({ message: 'Blog not found'})
-            }
-            res.status(200).json({ status: 'success', messasge: 'Blog deleted successfully!'});    
-        });
+const deleteBlog = (req, res) => {
+    const blogId = req.params.id;
+
+    const sql = 'DELETE FROM blogs WHERE id = ?';
+    pool.query(sql, blogId, (error, result) => {
+        if (error) {
+            console.error(error);
+            res.status(500).send('Error deleting blog');
+        } else if (result.affectedRows === 0) {
+            res.status(404).json({ message: 'Blog not found' });
+        } else {
+            res.status(200).json({ status: 'success', message: 'Blog deleted successfully!' });
+        }
+    });
 };
 
 module.exports = {
     getBlogs,
-    getBlog,
+    getLatestBlog,
     createBlog,
     updateBlog,
     deleteBlog

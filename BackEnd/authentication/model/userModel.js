@@ -1,19 +1,6 @@
 const connection = require('../db_connect');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-
-
-
-
-
-
-
-
-
-
-
-
-
 const getAll = (callback) => {
       const query = 'SELECT * FROM adminuser';
       connection.query(query, (err, result) => {
@@ -33,9 +20,6 @@ const getUser = (emailTerm, callback) => {
             return callback(null, result);
       });
 };
-
-
-
 
 const register = async (user, callback) => {
       try {
@@ -111,4 +95,14 @@ const update = (id, newData, callback) => {
 };
 
 
-module.exports = { getUser, getAll, login, register, update };
+const getCount = (callback) => {
+      const query = 'SELECT COUNT(*) as count FROM adminuser';
+      connection.query(query, (err, result) => {
+            if (err) {
+                  return callback(err, null);
+            }
+            return callback(null, result[0].count);
+      });
+};
+
+module.exports = { getUser, getAll, login, register, update, getCount };

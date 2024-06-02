@@ -1,5 +1,9 @@
 const pool = require('../db_connect.js');
 
+const models = require('../models/eventModels.js');
+
+
+
 const getEvents = (req, res) => {
     const sql = 'SELECT * from event';
     pool.query(sql, (error, result) => {
@@ -80,10 +84,21 @@ const deleteEvent = (req, res) => {
     });
 };
 
+const getEventCount = (req, res) => {
+    models.getCount((err, result) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+};
+
 module.exports = {
     getEvents,
     getEvent,
     createEvent,
     updateEvent,
-    deleteEvent
+    deleteEvent,
+    getEventCount
 };

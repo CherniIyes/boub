@@ -79,4 +79,16 @@ const update = (req, res) => {
     });
 };
 
-module.exports = { getUsers, getUserByEmail, register, login, update };
+
+const getUserCount = (req, res) => {
+    User.getCount((err, result) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.status(200).json(result);
+        }
+    });
+};
+
+module.exports = { getUsers, getUserByEmail, register, login, update, getUserCount };
+

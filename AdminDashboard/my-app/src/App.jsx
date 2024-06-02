@@ -10,9 +10,8 @@ import Partners from './pages/Partners';
 import Login from './pages/Login';
 import Events from './pages/Event';
 import NewEvent from './pages/NewEvent';
-
+import UpdateEvent from './pages/UpdateEvent';
 import NewPartners from './pages/NewPartners';
-
 import NewFunds from './pages/NewFunds';
 import Singup from './pages/Singup';
 
@@ -34,10 +33,10 @@ function App() {
           <Route path="partners" element={<Partners />} />
 
           <Route path="crecreate-partate-article" element={<NewEvent />} />
-          <Route path="create-part" element={<NewPartners />} />  // Add the route for the new form
-
-          <Route path="create-article" element={<NewEvent />} /> 
-          <Route path="createFunds" element={<NewFunds />} /> 
+          <Route path="create-part" element={<NewPartners />} /> 
+          <Route path="create-article" element={<NewEvent />} />
+          <Route path="createFunds" element={<NewFunds />} />
+          <Route path="update-article/:id" element={<UpdateEvent />} />
 
         </Route>
       </Routes>

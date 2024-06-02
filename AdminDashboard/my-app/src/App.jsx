@@ -10,13 +10,12 @@ import Partners from './pages/Partners';
 import Login from './pages/Login';
 import Events from './pages/Event';
 import NewEvent from './pages/NewEvent';
-
-import NewPartners from './pages/NewPartners';
-
 import NewFunds from './pages/NewFunds';
 import Singup from './pages/Singup';
 
-
+import NewPartners from './pages/NewPartners';
+import Newcoll from './pages/Newcollobarators';
+import Newcareers from './pages/Newcareers';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -32,12 +31,11 @@ function App() {
           <Route path="funds" element={<Funds />} />
           <Route path="careers" element={<Careers />} />
           <Route path="partners" element={<Partners />} />
-
           <Route path="crecreate-partate-article" element={<NewEvent />} />
-          <Route path="create-part" element={<NewPartners />} />  // Add the route for the new form
-
-          <Route path="create-article" element={<NewEvent />} /> 
+          <Route path="create-part" element={<NewPartners />} /> 
           <Route path="createFunds" element={<NewFunds />} /> 
+          <Route path="create-coll" element={<Newcoll />} /> 
+          <Route path="create-carees" element={<Newcareers />} /> 
 
         </Route>
       </Routes>

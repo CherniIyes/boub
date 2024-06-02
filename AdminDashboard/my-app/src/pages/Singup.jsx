@@ -18,10 +18,8 @@ const Singup = ({ setIsAuthenticated }) => {
             try {
                   const response = await axios.post('http://localhost:3500/admin/register', { username, email, password });
                   if (response.status === 200) {
-                        // Optionally, set user authentication state
-                        setIsAuthenticated(false); // Set to false because the user should log in after signing up
-                        // Redirect to the login page
-                        navigate('/login');
+                        setIsAuthenticated(true);
+                        navigate('/');
                   }
             } catch (err) {
                   setError('Signup failed. Check your details and try again.');

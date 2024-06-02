@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `atdce`.`adminuser` (
   `isverified` INT NULL DEFAULT '0',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -126,12 +126,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `atdce`.`collaborators` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image5` VARCHAR(10000) NOT NULL,
-  `image6` TEXT NOT NULL,
-  `image7` TEXT NOT NULL,
-  `image8` TEXT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -240,6 +237,7 @@ CREATE TABLE IF NOT EXISTS `atdce`.`internship` (
   `pdf` TEXT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -267,12 +265,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `atdce`.`partner` (
   `part_id` INT NOT NULL AUTO_INCREMENT,
   `image1` VARCHAR(10000) NOT NULL,
-  `image2` TEXT NOT NULL,
-  `image3` TEXT NOT NULL,
-  `image4` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`part_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

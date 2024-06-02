@@ -29,8 +29,8 @@ const getFund = ( req, res ) => {
 
 const createFund = ( req, res ) => {
 
-    const {description, amount, project_id, part_id} = req.body;
-    const newFund = {description, amount, project_id, part_id};
+    const {image, date, pdf} = req.body;
+    const newFund = {image, date, pdf} ;
 
     const sql = 'INSERT INTO fund SET ?';
     pool.query(sql, newFund, (error) => {
@@ -44,8 +44,8 @@ const createFund = ( req, res ) => {
 };
 
 const updateFund = ( req, res ) => {
-    const {description, amount, project_id, part_id} = req.body;
-    const updatedFund = {description, amount, project_id, part_id};
+    const {image, date, pdf}  = req.body;
+    const updatedFund = {image, date, pdf} ;
 
     const sql = 'UPDATE fund SET ? WHERE project_id = ? AND part_id = ?';
     pool.query(sql, [updatedFund, req.params.project_id, req.params.part_id] , (error) => {
@@ -61,19 +61,21 @@ const updateFund = ( req, res ) => {
 };
 
 const deleteFund = ( req, res ) => {
+    const { id } = req.params;
 
-    const sql = 'DELETE FROM fund WHERE project_id = ? AND part_id = ?';
-    pool.query(sql, req.params.project_id, req.params.part_id, (error) => {
+    const sql = 'DELETE FROM fund WHERE id = ?';
+    pool.query(sql, [id], (error, result) => {
         if (error) {
             console.error(error);
             res.status(500).send('Error deleting fund');
+        } else if (result.affectedRows === 0) {
+            res.status(404).json({ message: 'Fund not found' });
+        } else {
+            res.status(200).json({ status: 'success', message: 'Fund deleted successfully!' });
         }
-        if (result.affectedRows === 0) {
-            res.status(404).json({ message: 'Fund not found'})
-        }
-        res.status(200).json({ status: 'success', messasge: 'Fund deleted successfully!'});
     });
 };
+
 
 module.exports = {
     getFunds,

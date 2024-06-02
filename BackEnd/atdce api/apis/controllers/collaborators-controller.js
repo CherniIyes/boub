@@ -28,9 +28,45 @@ const createcoll= ( req, res ) => {
       }
     });
 };
+const updatecoll = ( req, res ) => {
+
+  const id = req.params.id;
+  const { image5 } = req.body;
+  const updatedPartner = {image5 };
+
+  const sql = 'UPDATE collaborators    SET ? WHERE id= ?';
+  pool.query(sql, [updatedPartner, id], (error) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Error updating coll');
+    }
+   
+  {
+      res.status(200).json({ status: 'success', message: 'coll updated successfully!'});
+  }
+  });
+};
+
+const deletecoll = ( req, res ) => {
+  const partnerId = req.params.id;
+
+  const sql = 'DELETE FROM collaborators WHERE id = ?';
+  pool.query(sql , partnerId, (error) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Error deleting collaborators');
+    }
+  
+  
+  res.status(200).json({ status: 'success', messasge: 'collaborators deleted successfully!'});
+  });
+};
+
 
 
 module.exports = {
     getcollo,
-    createcoll
+    createcoll,
+    updatecoll,
+    deletecoll
 };

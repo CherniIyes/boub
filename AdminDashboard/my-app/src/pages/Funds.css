@@ -1,81 +1,70 @@
-.event-page {
-      /* max-width: 1200px; */
-      padding: 20px;
-      margin-top: 40px;
-  
-  }
-  
-  .event-page h1 {
-      margin-bottom: 20px;
-  }
-  
-  .create-article-button {
-      display: flex;
-      justify-items: center;
-      justify-content: space-evenly;
-      /* margin-bottom: 20px; */
-      padding: 10px 20px;
-      background-color: white;
-      color: #28a745;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      max-width: 200px;
-      font-weight: bold;
-      float: inline-end;
-  }
-  
-  .create-article-button:hover {
-      background-color: #1a752e;
-  }
-  
-  .event-page table {
-      width: 100%;
-      border-collapse: collapse;
-      /* margin-bottom: 20px; */
-      background-color: #fff;
-      border-radius: 5px;
-      overflow: hidden;
-  }
-  
-  .event-page table th,
-  .event-page table td {
-      padding: 15px;
-      text-align: left;
-      border-bottom: 1px solid #afadad;
-      border-right: 1px solid #afadad;
-      background-color: #333;
-      color: #fff;
-  }
-  
-  .event-page table th {
-      background-color: #555;
-      font-weight: bold;
-  }
-  
-  .event-page table tr:nth-child(even) {
-      background-color: #f9f9f9;
-  }
-  
-  .event-page img {
-      max-width: 200px;
-  
-      /* object-fit: contain; */
-      display: block;
-      margin: 0 auto;
-  }
-  
-  .event-page th,
-  td {
-      text-align: center;
-  }
-  
-  .event-page table th:first-child,
-  .event-page table td:first-child {
-      text-align: left;
-  }
-  
-  .event-page table th:last-child,
-  .event-page table td:last-child {
-      text-align: right;
-  }
+.funds-container {
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.funds-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.fund-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.fund-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fund-item:hover .delete-icon {
+    display: flex;
+}
+
+.fund-item.plus-item {
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: 2px dashed #ddd;
+}
+
+.fund-item.plus-item:hover {
+    background-color: #e0e0e0;
+}
+
+.fund-item:hover {
+    transform: scale(1.05);
+}
+
+.delete-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    /* background-color: rgba(255, 0, 0, 0.7); */
+}
+
+.fund-item.plus-item .react-icons {
+    color: #28a745;
+}

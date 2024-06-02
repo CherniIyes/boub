@@ -18,8 +18,11 @@ import g2mimg2 from "../assets/g1mimg1.png";
 import g2img2 from "../assets/g2img2.png";
 import g1mimg1 from "../assets/g2mimg2.png";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Events() {
+  const navigate = useNavigate();
+
   const [showText, setShowText] = useState({
     whereAndWhen: false,
     planning: false,
@@ -28,7 +31,7 @@ export default function Events() {
 
   const [activeSection, setActiveSection] = useState("");
   const [data, setData] = useState([]);
-  
+
   const handleToggleText = (section) => {
     setShowText((prevShowText) => ({
       ...prevShowText,
@@ -54,7 +57,7 @@ export default function Events() {
   };
 
   const handleButtonClick = () => {
-    console.log("Clicked");
+    navigate('/eventsignup');
   };
 
   const images = [event1, event2, event3, event4, event5, event6, event7];
@@ -75,21 +78,18 @@ export default function Events() {
   return (
     <>
       <header className="header">
-      <div className="header-content">
+        <div className="header-content">
           {data.map((event, index) => (
             <div className="header-left" key={index}>
               <img className='img' src={event.image1} alt="" />
               <div className="hh">
                 <h1 className="title">{event.event_title}</h1>
-                </div>
+              </div>
               <h1 className="date">{event.date}</h1>
               <p className="des">{event.description}</p>
             </div>
           ))}
-          <div className="form-container">
-            <EventForm />
-
-          </div>
+          <button onClick={handleButtonClick}>Sign Up</button>
         </div>
       </header>
 
@@ -97,8 +97,8 @@ export default function Events() {
         <div className="page-content">
           {data.map((event, index) => (
             <div key={index}>
-               <h1>{event.event_title}</h1>
-               <p>{event.description}</p>
+              <h1>{event.event_title}</h1>
+              <p>{event.description}</p>
             </div>
           ))}
           <p style={{ fontWeight: 700 }}>See more</p>
@@ -245,7 +245,7 @@ export default function Events() {
           </div>
           <div className="btp">
             <p style={{ margin: "0px", fontWeight: 600, fontSize: "12px" }}>
-              Back to Top
+              Back To Top
             </p>
           </div>
         </div>

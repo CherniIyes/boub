@@ -18,13 +18,28 @@ const currentjobrouter = require('./apis/routers/Current-job.js')
 const internshiprouter = require('./apis/routers/internship-route.js')
 const app = express();
 const PORT = 8081;
+
+
+
+
+
+
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/blogs', blogRouter);
 
-app.use('/events', eventRouter); 
+
+
+
+
+
+
+
+
+app.use('/blogs', blogRouter);
+app.use('/events', eventRouter);
 
 
 app.use('/funds', fundRouter);
@@ -40,6 +55,15 @@ app.use('/volParticipation', volParticipationRouter);
 app.use('/collaborators', collaboratorsRouter)
 app.use('/currentjob', currentjobrouter)
 app.use('/internship', internshiprouter)
+
+
+
+
+
+
+
+
+
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });

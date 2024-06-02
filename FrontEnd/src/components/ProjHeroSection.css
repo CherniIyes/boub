@@ -199,3 +199,13 @@
     right: 0;
     width: 16%;
 }
+.video-banner {
+    width: 100vw; /* Full width of the viewport */
+    height: 550px; /* Adjust this value to your desired height */
+    margin: 20px 0; /* Margin on top and bottom */
+    border-radius: 8px;
+    overflow: hidden;
+    display: block; /* Ensures the video is treated as a block-level element */
+    object-fit: cover; /* Maintain aspect ratio and crop to fit */
+  }
+  

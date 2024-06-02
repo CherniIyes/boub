@@ -37,7 +37,7 @@ export default function Projects() {
     socialImages: [fb, ig, utube],
     socialNumbers: ["500k", "500k", "500k"],
     Img: [bo33],
-    recImg: [rec33],
+    recVideo: require("../assets/vd2.mp4"),
     latestProjectsDescription:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchangedGG",
     latestProjectsImg: [proj1, proj2, proj3, proj4, proj5, proj6, proj7],

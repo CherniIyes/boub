@@ -1,75 +1,78 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Blogs.css";
 
-import blimg1 from "../assets/b-l-img1.png";
-
-import post1 from "../assets/post1.png";
-import post2 from "../assets/post2.png";
-import post3 from "../assets/post3.png";
-import post4 from "../assets/post4.png";
-
-import more1 from "../assets/more1.png";
-import more2 from "../assets/more2.png";
-import more3 from "../assets/more3.png";
-import more4 from "../assets/more4.png";
-
 export default function Blogs() {
+  const [latestBlog, setLatestBlog] = useState(null);
+  const [allBlogs, setAllBlogs] = useState([]);
+
+  useEffect(() => {
+    // Fetch the latest blog
+    axios.get('http://localhost:8081/blogs/latest')
+      .then(response => {
+        console.log("Latest Blog Response:", response.data); // Log response
+        setLatestBlog(response.data[0]); // Assuming the latest blog is returned in the first position of the array
+      })
+      .catch(error => {
+        console.error("There was an error fetching the latest blog!", error);
+      });
+
+    // Fetch all blogs
+    axios.get('http://localhost:8081/blogs')
+      .then(response => {
+        console.log("All Blogs Response:", response.data); // Log response
+        setAllBlogs(response.data);
+      })
+      .catch(error => {
+        console.error("There was an error fetching the blogs!", error);
+      });
+  }, []);
+
+  const handleBlogClick = (blog) => {
+    setLatestBlog(blog);
+  };
+
   return (
     <>
       <div className="b-container">
         <div className="b-container-1">
-          <div className="b-container-1-sec">
-            <img src={blimg1} alt="" />
-            <div className="b-container-1-sec-t">
-              <h3> Nahj El Bousta </h3>
-              <h5> The Street Of The Old Post</h5>
-              <p>
-                The old street posts in Tunisia stand as silent witnesses to the
-                nation's rich history and cultural heritage. These weathered
-                structures, adorned with intricate designs and symbols, tell
-                stories of bygone eras and past civilizations that have shaped
-                the country's identity. Despite the passage of centuries, they
-                remain steadfast, serving as timeless landmarks and reminders of
-                Tunisia's enduring legacy.
-              </p>
+          {latestBlog ? (
+            <div className="b-container-1-sec">
+              <img src={latestBlog.imageurl} alt="" />
+              <div className="b-container-1-sec-t">
+                <h3>{latestBlog.title}</h3>
+                <h5>{latestBlog.author}</h5>
+                <p>{latestBlog.content}</p>
+              </div>
             </div>
-          </div>
-
-          <p>
-            ATDCE envisions transforming abandoned spaces, including old street
-            posts in Tunisia, into vibrant cultural hubs that celebrate the
-            nation's heritage. Through strategic planning and community
-            engagement, ATDCE will breathe new life into these neglected areas,
-            revitalizing them as dynamic venues for artistic expression and
-            cultural exchange. Step by step, ATDCE will organize events,
-            workshops, and exhibitions, inviting local artists and residents to
-            participate in the transformation process. Graffiti artists will be
-            invited to adorn the street posts with colorful murals, turning them
-            into captivating works of art that reflect Tunisia's diverse culture
-            and history. As the space becomes a focal point for creativity and
-            community interaction, ATDCE will continue to host events and
-            activities, fostering a sense of belonging and pride among
-            residents. Through its innovative approach, ATDCE will revitalize
-            these abandoned spaces, reimagining them as vibrant cultural spaces
-            that inspire and enrich the lives of all who visit.
-          </p>
-          <div className="b-img-set">
-            <img src={post1} alt="" />
-            <img src={post2} alt="" />
-            <img src={post3} alt="" />
-            <img src={post4} alt="" />
-          </div>
+          ) : (
+            <p>Loading...</p>
+          )}
+          {latestBlog && (
+            <div className="b-img-set">
+              <img src={latestBlog.imageurl1} alt="Image 1" />
+              <img src={latestBlog.imageurl2} alt="Image 2" />
+              <img src={latestBlog.imageurl3} alt="Image 3" />
+              <img src={latestBlog.imageurl4} alt="Image 4" />
+            </div>
+          )}
         </div>
         <div className="b-container-2">
           <h4>Read more</h4>
-          <img src={more1} alt="" />
-          <img src={more2} alt="" />
-          <img src={more3} alt="" />
-          <img src={more4} alt="" />
+          {allBlogs.length > 0 ? (
+            allBlogs.map((blog) => (
+              <div key={blog.id} onClick={() => handleBlogClick(blog)}>
+                <img src={blog.imageurl} alt={blog.title} />
+               
+              </div>
+            ))
+          ) : (
+            <p>No blogs available</p>
+          )}
         </div>
       </div>
       <div className="page-content3">
-        <hr></hr>
+        <hr />
         <div className="page-btm">
           <div className="socials">
             <p style={{ margin: "0px", fontWeight: 600, fontSize: "12px" }}>

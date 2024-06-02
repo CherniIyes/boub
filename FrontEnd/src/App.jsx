@@ -18,6 +18,7 @@ import AboutUs from "./pages/AboutUs.jsx";
 import PartnerWithUs from "./pages/PartnerWithUs.jsx";
 import Careers from "./pages/Careers.jsx";
 import Blogs from "./pages/Blogs.jsx";
+import EventSignUp from "./pages/EventSignUp.jsx";
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
             <Route path="partnerwithus" element={<PartnerWithUs />} />
             <Route path="careers" element={<Careers />} />
             <Route path="blogs" element={<Blogs />} />
+            <Route path="eventsignup" element={<EventSignUp />} />
           </Routes>
           <Footer />
         </div>

@@ -12,6 +12,11 @@ const Partners = () => {
     image1: '',
     // Add other image fields here
   });
+  const [updateData1, setUpdateData1] = useState({
+    id: null,
+    image5: '',
+    // Add other image fields here
+  });
   const [showUpdateInputs, setShowUpdateInputs] = useState(false);
   const navigate = useNavigate();
 
@@ -45,10 +50,29 @@ const Partners = () => {
       });
   };
 
+  const handleDeletecollobartaors = (id) => {
+    axios.delete(`http://localhost:8081/collaborators/${id}`)
+      .then(() => {
+        setFunds1(funds1.filter(fund => fund.id !== id));
+      })
+      .catch(error => {
+        console.error('There was an error deleting the collaborators!', error);
+      });
+  };
+
   const handleUpdatePartners = (part_id, image1) => {
     setUpdateData({
       id: part_id,
       image1: image1,
+      // Add other image fields here
+    });
+    setShowUpdateInputs(true);
+  };
+
+  const handleUpdatecollo = (id, image5) => {
+    setUpdateData1({
+      id: id,
+      image5: image5,
       // Add other image fields here
     });
     setShowUpdateInputs(true);
@@ -62,10 +86,17 @@ const Partners = () => {
     }));
   };
 
+  const handleInputChange1 = (event) => {
+    const { name, value } = event.target;
+    setUpdateData1(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
   const handleSubmitUpdate = () => {
     axios.put(`http://localhost:8081/partners/${updateData.id}`, updateData)
       .then(() => {
-        // Update funds state
         const updatedFunds = funds.map(fund => {
           if (fund.part_id === updateData.id) {
             return { ...fund, ...updateData };
@@ -73,15 +104,37 @@ const Partners = () => {
           return fund;
         });
         setFunds(updatedFunds);
-        setShowUpdateInputs(false); // Hide update inputs after successful update
+        setShowUpdateInputs(false);
       })
       .catch(error => {
         console.error('There was an error updating the partners!', error);
       });
   };
 
+  const handleSubmitUpdate1 = () => {
+    axios.put(`http://localhost:8081/collaborators/${updateData1.id}`, updateData1)
+      .then(() => {
+        const updatedFunds1 = funds1.map(fund => {
+          if (fund.id === updateData1.id) {
+            return { ...fund, ...updateData1 };
+          }
+          return fund;
+        });
+        setFunds1(updatedFunds1);
+        setShowUpdateInputs(false);
+      })
+      .catch(error => {
+        console.error('There was an error updating the collaborators!', error);
+      });
+  };
+
   const handleCreateFund = () => {
     navigate('/create-part');
+  };
+
+
+  const handleCreateFund1 = () => {
+    navigate('/create-coll');
   };
 
   return (
@@ -96,14 +149,10 @@ const Partners = () => {
             {showUpdateInputs && updateData.id === fund.part_id && (
               <div>
                 <input type="text" name="image1" value={updateData.image1} onChange={handleInputChange} />
-                {/* Add other input fields for other images */}
                 <button onClick={handleSubmitUpdate}>Update</button>
               </div>
             )}
             {fund.image1 && <img src={fund.image1} alt={`Fund ${index}`} />}
-            {fund.image2 && <img src={fund.image2} alt={`Fund ${index}`} />}
-            {fund.image3 && <img src={fund.image3} alt={`Fund ${index}`} />}
-            {fund.image4 && <img src={fund.image4} alt={`Fund ${index}`} />}
           </div>
         ))}
         <div className="fund-item plus-item" onClick={handleCreateFund}>
@@ -114,22 +163,18 @@ const Partners = () => {
       <div className="funds-list">
         {funds1.map((fund, index) => (
           <div className="fund-item" key={index}>
-            <AiFillDelete size={20} className="delete-icon" onClick={() => handleDeletePartners(fund.part_id)} />
-            <AiFillEdit size={20} className="edit-icon" onClick={() => handleUpdatePartners(fund.part_id, fund.image1)} />
-            {showUpdateInputs && updateData.id === fund.part_id && (
+            <AiFillDelete size={20} className="delete-icon" onClick={() => handleDeletecollobartaors(fund.id)} />
+            <AiFillEdit size={20} className="edit-icon" onClick={() => handleUpdatecollo(fund.id, fund.image5)} />
+            {showUpdateInputs && updateData1.id === fund.id && (
               <div>
-                <input type="text" name="image1" value={updateData.image1} onChange={handleInputChange} />
-                {/* Add other input fields for other images */}
-                <button onClick={handleSubmitUpdate}>Update</button>
+                <input type="text" name="image5" value={updateData1.image5} onChange={handleInputChange1} />
+                <button onClick={handleSubmitUpdate1}>Update</button>
               </div>
             )}
             {fund.image5 && <img src={fund.image5} alt={`Fund ${index}`} />}
-            {fund.image6 && <img src={fund.image6} alt={`Fund ${index}`} />}
-            {fund.image7 && <img src={fund.image7} alt={`Fund ${index}`} />}
-            {fund.image8 && <img src={fund.image8} alt={`Fund ${index}`} />}
           </div>
         ))}
-        <div className="fund-item plus-item" onClick={handleCreateFund}>
+        <div className="fund-item plus-item" onClick={handleCreateFund1}>
           <AiFillPlusCircle size={50} />
         </div>
       </div>

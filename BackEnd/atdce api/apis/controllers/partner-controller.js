@@ -32,8 +32,8 @@ const getPartner = ( req, res ) => {
 
 const createPartner = ( req, res ) => {
 
-    const { part_name, part_email, part_phone, part_address, part_website, description } = req.body;
-    const newPartner = { part_name, part_email, part_phone, part_address, part_website, description };
+    const { image1 } = req.body;
+    const newPartner = { image1 };
     
     const sql = 'INSERT INTO Partner SET ?';
     pool.query(sql, newPartner, (error) => {
@@ -49,8 +49,8 @@ const createPartner = ( req, res ) => {
 const updatePartner = ( req, res ) => {
 
     const partnerId = req.params.id;
-    const { part_name, part_email, part_phone, part_address, part_website, description } = req.body;
-    const updatedPartner = { part_name, part_email, part_phone, part_address, part_website, description };
+    const { image1 } = req.body;
+    const updatedPartner = {image1 };
 
     const sql = 'UPDATE Partner SET ? WHERE part_id = ?';
     pool.query(sql, [updatedPartner, partnerId], (error) => {
@@ -58,9 +58,7 @@ const updatePartner = ( req, res ) => {
         console.error(error);
         res.status(500).send('Error updating partner');
       }
-      if (result.affectedRows === 0) {
-        res.status(404).json({ message: 'Partner not found'})
-    }
+     
     {
         res.status(200).json({ status: 'success', message: 'Partner updated successfully!'});
     }
@@ -76,9 +74,8 @@ const deletePartner = ( req, res ) => {
         console.error(error);
         res.status(500).send('Error deleting partner');
       }
-      if (result.affectedRows === 0) {
-        res.status(404).json({ message: 'Partner not found'})
-    }
+    
+    
     res.status(200).json({ status: 'success', messasge: 'Partner deleted successfully!'});
     });
 };

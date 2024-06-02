@@ -57,27 +57,23 @@ export default function Partners() {
       <HeroSec {...HeroSecData} />
       <div className="partner-content">
         <h3>Who are our current partners?</h3>
-        <Splide options={{ type: 'loop', perPage: 1, autoplay: true, gap: '1rem',arrows: false}} className="partner-carousel">
+        <Splide options={{ type: 'loop', perPage: 4, autoplay: true, gap: '1rem',arrows: false}} className="partner-carousel">
           {data.map((event, index) => (
             <SplideSlide key={index}>
               <div className="partner-images-container">
                 <img className='partner-img-item' src={event.image1} alt="" />
-                <img className='partner-img-item' src={event.image2} alt="" />
-                <img className='partner-img-item' src={event.image3} alt="" />
-                <img className='partner-img-item' src={event.image4} alt="" />
+              
               </div>
             </SplideSlide>
           ))}
         </Splide>
         <h3>Our Previous Collaborators</h3>
-        <Splide options={{ type: 'loop', perPage: 1, autoplay: true, gap: '1rem',arrows: false}} className="partner-carousel">
+        <Splide options={{ type: 'loop', perPage: 4, autoplay: true, gap: '1rem',arrows: false}} className="partner-carousel">
           {data1.map((event, index) => (
             <SplideSlide key={index}>
               <div className="partner-images-container">
                 <img className='partner-img-item' src={event.image5} alt="" />
-                <img className='partner-img-item' src={event.image6} alt="" />
-                <img className='partner-img-item' src={event.image7} alt="" />
-                <img className='partner-img-item' src={event.image8} alt="" />
+               
               </div>
             </SplideSlide>
           ))}
